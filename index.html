@@ -209,6 +209,11 @@
             font-size: 12px;
             margin-top: 25px;
         }
+        .input-hint {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #999;
+        }
 
         @media (max-width: 600px) {
             .brand-name {
@@ -250,6 +255,9 @@
                 id="name"
                 placeholder="请输入姓名"
             >
+            <div class="input-hint">
+                 无视大小写
+            </div>
 
             <label>手机号码</label>
             <input
@@ -257,6 +265,9 @@
                 id="phone"
                 placeholder="例如：0128888888"
             >
+            <div class="input-hint">
+                 格式：0123333333
+            </div>
 
             <button
                 class="search-button"
