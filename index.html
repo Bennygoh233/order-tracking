@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单查询</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, "Microsoft YaHei", sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px 24px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #111;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        #result {
+            margin-top: 25px;
+        }
+
+        .result-box {
+            background: #f8f8f8;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .row {
+            margin-bottom: 15px;
+        }
+
+        .label {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .value {
+            font-size: 17px;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: #eee;
+        }
+
+        .tracking-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 13px;
+            background: #111;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+
+        .error {
+            color: #c00;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>订单查询</h1>
+
+        <div class="subtitle">
+            输入您的姓名和手机号码查询订单
+        </div>
+
+        <label>姓名</label>
+        <input
+            type="text"
+            id="name"
+            placeholder="请输入姓名"
+        >
+
+        <label>手机号码</label>
+        <input
+            type="tel"
+            id="phone"
+            placeholder="例如：0128888888"
+        >
+
+        <button onclick="searchOrder()">
+            查询订单
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+async function searchOrder() {
+
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+
+    const result = document.getElementById("result");
+
+    if (!name || !phone) {
+        result.innerHTML = `
+            <div class="error">
+                请输入姓名和手机号码
+            </div>
+        `;
+        return;
+    }
+
+    result.innerHTML = `
+        <div style="text-align:center;">
+            查询中...
+        </div>
+    `;
+
+    try {
+
+        /*
+         * 等我们建立后端 API 后，
+         * 这里会连接 Airtable。
+         */
+
+        const response = await fetch(
+            "/api/order?name=" +
+            encodeURIComponent(name) +
+            "&phone=" +
+            encodeURIComponent(phone)
+        );
+
+        const data = await response.json();
+
+        if (!data.success) {
+
+            result.innerHTML = `
+                <div class="error">
+                    ${data.message || "找不到订单"}
+                </div>
+            `;
+
+            return;
+        }
+
+        const order = data.order;
+
+        let trackingButton = "";
+
+        if (order.trackingUrl) {
+
+            trackingButton = `
+                <a
+                    class="tracking-link"
+                    href="${order.trackingUrl}"
+                    target="_blank"
+                >
+                    查看物流
+                </a>
+            `;
+        }
+
+        result.innerHTML = `
+
+            <div class="result-box">
+
+                <div class="row">
+                    <div class="label">订单号码</div>
+                    <div class="value">
+                        ${order.orderNo}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="label">客户姓名</div>
+                    <div class="value">
+                        ${order.name}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="label">订单状态</div>
+                    <div class="value">
+                        <span class="status">
+                            ${order.status}
+                        </span>
+                    </div>
+                </div>
+
+                ${
+                    order.courier
+                    ? `
+                    <div class="row">
+                        <div class="label">快递公司</div>
+                        <div class="value">
+                            ${order.courier}
+                        </div>
+                    </div>
+                    `
+                    : ""
+                }
+
+                ${
+                    order.trackingNo
+                    ? `
+                    <div class="row">
+                        <div class="label">Tracking No.</div>
+                        <div class="value">
+                            ${order.trackingNo}
+                        </div>
+                    </div>
+                    `
+                    : ""
+                }
+
+                ${trackingButton}
+
+            </div>
+        `;
+
+    } catch (error) {
+
+        console.error(error);
+
+        result.innerHTML = `
+            <div class="error">
+                系统暂时无法查询，请稍后再试。
+            </div>
+        `;
+    }
+}
+
+</script>
+
+</body>
+</html>
