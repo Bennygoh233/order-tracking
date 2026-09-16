@@ -1,8 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>WU鉴名表｜订单查询</title>
 
     <style>
@@ -17,8 +20,12 @@
             color: #1c1c1c;
         }
 
-        /* 品牌顶部 */
+        /* =========================
+           顶部品牌区域
+        ========================= */
+
         .brand-header {
+            position: relative;
             background: #111;
             color: white;
             text-align: center;
@@ -38,6 +45,51 @@
             color: #bbb;
         }
 
+
+        /* =========================
+           语言切换
+        ========================= */
+
+        .language-toggle {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+
+            display: flex;
+
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 20px;
+
+            padding: 3px;
+        }
+
+        .lang-button {
+            border: none;
+            background: transparent;
+            color: #aaa;
+
+            padding: 7px 11px;
+
+            border-radius: 17px;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .lang-button.active {
+            background: white;
+            color: #111;
+        }
+
+
+        /* =========================
+           主页面
+        ========================= */
+
         .container {
             max-width: 520px;
             margin: 30px auto;
@@ -48,7 +100,9 @@
             background: white;
             border-radius: 18px;
             padding: 30px 24px;
-            box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+
+            box-shadow:
+                0 6px 30px rgba(0,0,0,0.08);
         }
 
         h1 {
@@ -64,20 +118,30 @@
             font-size: 14px;
         }
 
+
+        /* =========================
+           Input
+        ========================= */
+
         label {
             display: block;
             margin-top: 18px;
             margin-bottom: 8px;
+
             font-weight: 600;
             font-size: 14px;
         }
 
         input {
             width: 100%;
+
             padding: 14px 15px;
+
             border: 1px solid #ddd;
             border-radius: 10px;
+
             font-size: 16px;
+
             outline: none;
         }
 
@@ -85,16 +149,33 @@
             border-color: #111;
         }
 
+        .input-hint {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #999;
+        }
+
+
+        /* =========================
+           查询按钮
+        ========================= */
+
         .search-button {
             width: 100%;
+
             margin-top: 25px;
+
             padding: 15px;
+
             border: none;
             border-radius: 10px;
+
             background: #111;
             color: white;
+
             font-size: 16px;
             font-weight: 600;
+
             cursor: pointer;
         }
 
@@ -102,20 +183,28 @@
             opacity: 0.88;
         }
 
+
+        /* =========================
+           查询结果
+        ========================= */
+
         #result {
             margin-top: 25px;
         }
 
         .result-box {
             background: #f8faf8;
+
             border: 1px solid #e4eee6;
             border-radius: 14px;
+
             padding: 20px;
         }
 
         .success-title {
             font-size: 17px;
             font-weight: 700;
+
             margin-bottom: 20px;
         }
 
@@ -131,6 +220,7 @@
         .label {
             color: #777;
             font-size: 13px;
+
             margin-bottom: 5px;
         }
 
@@ -139,11 +229,20 @@
             font-weight: 600;
         }
 
+
+        /* =========================
+           Status
+        ========================= */
+
         .status {
             display: inline-block;
+
             padding: 7px 12px;
+
             border-radius: 20px;
+
             background: #e9e9e9;
+
             font-size: 14px;
         }
 
@@ -157,11 +256,18 @@
             color: #875d00;
         }
 
-        /* 订单追踪区域 */
+
+        /* =========================
+           Tracking
+        ========================= */
+
         .tracking-section {
             margin-top: 20px;
+
             padding: 18px;
+
             background: #fffaf0;
+
             border: 1px solid #f0e1bd;
             border-radius: 12px;
         }
@@ -169,55 +275,91 @@
         .tracking-title {
             font-size: 17px;
             font-weight: 700;
+
             margin-bottom: 5px;
         }
 
         .tracking-instruction {
             color: #777;
+
             font-size: 13px;
+
             margin-bottom: 14px;
         }
 
         .tracking-link {
             display: block;
+
             width: 100%;
+
             text-align: center;
+
             padding: 14px 10px;
+
             background: #111;
             color: white;
+
             text-decoration: none;
+
             border-radius: 9px;
+
             font-size: 14px;
-            word-break: break-all;
         }
 
         .tracking-link:hover {
             opacity: 0.85;
         }
 
+
+        /* =========================
+           Error
+        ========================= */
+
         .error {
             color: #b42318;
+
             background: #fff1f0;
+
             border-radius: 10px;
+
             text-align: center;
+
             padding: 15px;
         }
 
+
+        /* =========================
+           Footer
+        ========================= */
+
         .footer {
             text-align: center;
+
             color: #999;
+
             font-size: 12px;
+
             margin-top: 25px;
         }
-        .input-hint {
-            margin-top: 6px;
-            font-size: 12px;
-            color: #999;
-        }
+
+
+        /* =========================
+           手机版
+        ========================= */
 
         @media (max-width: 600px) {
+
             .brand-name {
                 font-size: 27px;
+            }
+
+            .brand-header {
+                padding-top: 65px;
+            }
+
+            .language-toggle {
+                top: 15px;
+                right: 15px;
             }
 
             .container {
@@ -228,235 +370,491 @@
                 padding: 25px 18px;
             }
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- WU鉴名表 -->
-    <div class="brand-header">
-        <div class="brand-name">WU鉴名表</div>
-        <div class="brand-subtitle">LUXURY WATCHES</div>
-    </div>
 
-    <div class="container">
+<!-- =========================
+     品牌 Header
+========================= -->
 
-        <div class="card">
+<div class="brand-header">
 
-            <h1>订单查询</h1>
+    <!-- 语言切换 -->
 
-            <div class="subtitle">
-                请输入您的姓名和手机号码查询订单状态
-            </div>
+    <div class="language-toggle">
 
-            <label>姓名</label>
-            <input
-                type="text"
-                id="name"
-                placeholder="请输入姓名"
-            >
-            <div class="input-hint">
-                 无视大小写
-            </div>
+        <button
+            id="zhButton"
+            class="lang-button active"
+            onclick="changeLanguage('zh')"
+        >
+            中文
+        </button>
 
-            <label>手机号码</label>
-            <input
-                type="tel"
-                id="phone"
-                placeholder="例如：0128888888"
-            >
-            <div class="input-hint">
-                 格式：0123333333
-            </div>
-
-            <button
-                class="search-button"
-                onclick="searchOrder()"
-            >
-                查询订单
-            </button>
-
-            <div id="result"></div>
-
-        </div>
-
-        <div class="footer">
-            © 2026 WU鉴名表
-        </div>
+        <button
+            id="enButton"
+            class="lang-button"
+            onclick="changeLanguage('en')"
+        >
+            EN
+        </button>
 
     </div>
+
+
+    <!-- 店名永远不翻译 -->
+
+    <div class="brand-name">
+        WU鉴名表
+    </div>
+
+    <div class="brand-subtitle">
+        LUXURY WATCHES
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     主内容
+========================= -->
+
+<div class="container">
+
+    <div class="card">
+
+        <h1 id="pageTitle">
+            订单查询
+        </h1>
+
+
+        <div
+            class="subtitle"
+            id="pageSubtitle"
+        >
+            请输入您的姓名和手机号码查询订单状态
+        </div>
+
+
+        <!-- 姓名 -->
+
+        <label id="nameLabel">
+            姓名
+        </label>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="请输入姓名"
+        >
+
+        <div
+            class="input-hint"
+            id="nameHint"
+        >
+            无视大小写
+        </div>
+
+
+        <!-- 手机号码 -->
+
+        <label id="phoneLabel">
+            手机号码
+        </label>
+
+        <input
+            type="tel"
+            id="phone"
+            placeholder="0123333333"
+        >
+
+        <div
+            class="input-hint"
+            id="phoneHint"
+        >
+            格式：0123333333
+        </div>
+
+
+        <!-- 查询按钮 -->
+
+        <button
+            id="searchButton"
+            class="search-button"
+            onclick="searchOrder()"
+        >
+            查询订单
+        </button>
+
+
+        <div id="result"></div>
+
+    </div>
+
+
+    <div class="footer">
+        © 2026 WU鉴名表
+    </div>
+
+</div>
+
 
 
 <script>
 
+/*
+=========================================
+语言
+=========================================
+*/
+
+let currentLanguage = "zh";
+
+
+const translations = {
+
+    zh: {
+
+        title:
+            "订单查询",
+
+        subtitle:
+            "请输入您的姓名和手机号码查询订单状态",
+
+        name:
+            "姓名",
+
+        namePlaceholder:
+            "请输入姓名",
+
+        nameHint:
+            "无视大小写",
+
+        phone:
+            "手机号码",
+
+        phoneHint:
+            "格式：0123333333",
+
+        search:
+            "查询订单",
+
+        searching:
+            "查询中...",
+
+        enterDetails:
+            "请输入姓名和手机号码",
+
+        notFound:
+            "找不到订单，请检查姓名和手机号码",
+
+        systemError:
+            "系统暂时无法查询，请稍后再试。",
+
+        found:
+            "✓ 找到您的订单",
+
+        orderNo:
+            "订单号码",
+
+        customerName:
+            "客户姓名",
+
+        orderStatus:
+            "订单状态",
+
+        trackingNo:
+            "物流单号",
+
+        trackingTitle:
+            "🚚 订单追踪",
+
+        trackingInstruction:
+            "点击链接以追踪订单状态",
+
+        trackingButton:
+            "点击这里追踪订单",
+
+        shipped:
+            "已发货",
+
+        pending:
+            "尚未发货"
+
+    },
+
+
+    en: {
+
+        title:
+            "Order Tracking",
+
+        subtitle:
+            "Enter your name and phone number to check your order status",
+
+        name:
+            "Name",
+
+        namePlaceholder:
+            "Enter your name",
+
+        nameHint:
+            "Not case-sensitive",
+
+        phone:
+            "Phone Number",
+
+        phoneHint:
+            "Format: 0123333333",
+
+        search:
+            "Check Order",
+
+        searching:
+            "Searching...",
+
+        enterDetails:
+            "Please enter your name and phone number",
+
+        notFound:
+            "Order not found. Please check your name and phone number.",
+
+        systemError:
+            "Unable to check your order at the moment. Please try again later.",
+
+        found:
+            "✓ Order Found",
+
+        orderNo:
+            "Order Number",
+
+        customerName:
+            "Customer Name",
+
+        orderStatus:
+            "Order Status",
+
+        trackingNo:
+            "Tracking Number",
+
+        trackingTitle:
+            "🚚 Order Tracking",
+
+        trackingInstruction:
+            "Click the link below to track your order status",
+
+        trackingButton:
+            "Track My Order",
+
+        shipped:
+            "Shipped",
+
+        pending:
+            "Pending for Shipment"
+
+    }
+
+};
+
+
+
+/*
+=========================================
+切换语言
+=========================================
+*/
+
+function changeLanguage(language) {
+
+    currentLanguage = language;
+
+    const t = translations[language];
+
+
+    document.documentElement.lang =
+        language === "zh"
+            ? "zh-CN"
+            : "en";
+
+
+    document.getElementById("pageTitle")
+        .textContent = t.title;
+
+
+    document.getElementById("pageSubtitle")
+        .textContent = t.subtitle;
+
+
+    document.getElementById("nameLabel")
+        .textContent = t.name;
+
+
+    document.getElementById("name")
+        .placeholder = t.namePlaceholder;
+
+
+    document.getElementById("nameHint")
+        .textContent = t.nameHint;
+
+
+    document.getElementById("phoneLabel")
+        .textContent = t.phone;
+
+
+    document.getElementById("phoneHint")
+        .textContent = t.phoneHint;
+
+
+    document.getElementById("searchButton")
+        .textContent = t.search;
+
+
+    /*
+    Toggle 样式
+    */
+
+    document
+        .getElementById("zhButton")
+        .classList.toggle(
+            "active",
+            language === "zh"
+        );
+
+
+    document
+        .getElementById("enButton")
+        .classList.toggle(
+            "active",
+            language === "en"
+        );
+
+
+    /*
+    如果已经查询过订单，
+    切换语言时重新显示结果
+    */
+
+    if (lastOrder) {
+        displayOrder(lastOrder);
+    }
+
+}
+
+
+
+/*
+=========================================
+保存最后查询结果
+=========================================
+*/
+
+let lastOrder = null;
+
+
+
+/*
+=========================================
+查询订单
+=========================================
+*/
+
 async function searchOrder() {
 
+    const t =
+        translations[currentLanguage];
+
+
     const name =
-        document.getElementById("name").value.trim();
+        document
+        .getElementById("name")
+        .value
+        .trim();
+
 
     const phone =
-        document.getElementById("phone").value.trim();
+        document
+        .getElementById("phone")
+        .value
+        .trim();
+
 
     const result =
         document.getElementById("result");
+
 
     if (!name || !phone) {
 
         result.innerHTML = `
             <div class="error">
-                请输入姓名和手机号码
+                ${t.enterDetails}
             </div>
         `;
 
         return;
     }
 
+
     result.innerHTML = `
-        <div style="text-align:center;padding:15px;">
-            查询中...
+        <div style="
+            text-align:center;
+            padding:15px;
+        ">
+            ${t.searching}
         </div>
     `;
 
+
     try {
 
-        const response = await fetch(
-            "/api/order?name=" +
-            encodeURIComponent(name) +
-            "&phone=" +
-            encodeURIComponent(phone)
-        );
+        const response =
+            await fetch(
 
-        const data = await response.json();
+                "/api/order?name=" +
+
+                encodeURIComponent(name) +
+
+                "&phone=" +
+
+                encodeURIComponent(phone)
+
+            );
+
+
+        const data =
+            await response.json();
+
 
         if (!data.success) {
 
+            lastOrder = null;
+
             result.innerHTML = `
                 <div class="error">
-                    ${data.message || "找不到订单"}
+                    ${
+                        response.status === 404
+                            ? t.notFound
+                            : t.systemError
+                    }
                 </div>
             `;
 
             return;
         }
 
-        const order = data.order;
 
-        /*
-         * 根据状态改变颜色
-         */
-        let statusClass = "";
-
-        if (order.status === "已发货") {
-            statusClass = "shipped";
-        }
-
-        if (order.status === "尚未发货") {
-            statusClass = "pending";
-        }
+        lastOrder =
+            data.order;
 
 
-        /*
-         * Tracking Number
-         * 只有存在 Tracking No 才显示
-         */
-        let trackingNumber = "";
-
-        if (order.trackingNo) {
-
-            trackingNumber = `
-                <div class="row">
-                    <div class="label">
-                        Tracking No.
-                    </div>
-
-                    <div class="value">
-                        ${order.trackingNo}
-                    </div>
-                </div>
-            `;
-        }
-
-
-        result.innerHTML = `
-
-            <div class="result-box">
-
-                <div class="success-title">
-                    ✓ 找到您的订单
-                </div>
-
-
-                <div class="row">
-
-                    <div class="label">
-                        订单号码
-                    </div>
-
-                    <div class="value">
-                        ${order.orderNo}
-                    </div>
-
-                </div>
-
-
-                <div class="row">
-
-                    <div class="label">
-                        客户姓名
-                    </div>
-
-                    <div class="value">
-                        ${order.name}
-                    </div>
-
-                </div>
-
-
-                <div class="row">
-
-                    <div class="label">
-                        订单状态
-                    </div>
-
-                    <div class="value">
-
-                        <span class="status ${statusClass}">
-                            ${order.status}
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                ${trackingNumber}
-
-
-                <!-- 订单追踪 -->
-
-                <div class="tracking-section">
-
-                    <div class="tracking-title">
-                        🚚 订单追踪
-                    </div>
-
-                    <div class="tracking-instruction">
-                        点击链接以追踪订单状态
-                    </div>
-
-                    <a
-                        class="tracking-link"
-                        href="http://120.79.172.107:555/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        点击这里追踪订单
-                    </a>
-
-                </div>
-
-            </div>
-        `;
+        displayOrder(
+            data.order
+        );
 
     }
 
@@ -464,30 +862,230 @@ async function searchOrder() {
 
         console.error(error);
 
+        lastOrder = null;
+
+
         result.innerHTML = `
             <div class="error">
-                系统暂时无法查询，请稍后再试。
+                ${t.systemError}
             </div>
         `;
+
     }
+
 }
 
 
+
 /*
- * 手机按 Enter 也可以查询
- */
+=========================================
+显示订单
+=========================================
+*/
+
+function displayOrder(order) {
+
+    const t =
+        translations[currentLanguage];
+
+
+    const result =
+        document.getElementById("result");
+
+
+    /*
+    Status
+    */
+
+    let statusClass = "";
+
+    let statusText =
+        order.status;
+
+
+    if (
+        order.status === "已发货" ||
+        order.status === "Shipped"
+    ) {
+
+        statusClass =
+            "shipped";
+
+        statusText =
+            t.shipped;
+
+    }
+
+
+    else if (
+        order.status === "尚未发货" ||
+        order.status === "Pending for Shipment"
+    ) {
+
+        statusClass =
+            "pending";
+
+        statusText =
+            t.pending;
+
+    }
+
+
+
+    /*
+    Tracking No
+    */
+
+    let trackingNumber = "";
+
+
+    if (order.trackingNo) {
+
+        trackingNumber = `
+
+            <div class="row">
+
+                <div class="label">
+                    ${t.trackingNo}
+                </div>
+
+                <div class="value">
+                    ${order.trackingNo}
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    /*
+    显示
+    */
+
+    result.innerHTML = `
+
+        <div class="result-box">
+
+
+            <div class="success-title">
+                ${t.found}
+            </div>
+
+
+            <div class="row">
+
+                <div class="label">
+                    ${t.orderNo}
+                </div>
+
+                <div class="value">
+                    ${order.orderNo}
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="label">
+                    ${t.customerName}
+                </div>
+
+                <div class="value">
+                    ${order.name}
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="label">
+                    ${t.orderStatus}
+                </div>
+
+                <div class="value">
+
+                    <span class="
+                        status
+                        ${statusClass}
+                    ">
+                        ${statusText}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            ${trackingNumber}
+
+
+            <div class="tracking-section">
+
+
+                <div class="tracking-title">
+                    ${t.trackingTitle}
+                </div>
+
+
+                <div class="tracking-instruction">
+                    ${t.trackingInstruction}
+                </div>
+
+
+                <a
+                    class="tracking-link"
+
+                    href="http://120.79.172.107:555/"
+
+                    target="_blank"
+
+                    rel="noopener noreferrer"
+                >
+
+                    ${t.trackingButton}
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+    `;
+
+}
+
+
+
+/*
+=========================================
+Enter 查询
+=========================================
+*/
 
 document
     .getElementById("phone")
-    .addEventListener("keydown", function(event) {
+    .addEventListener(
+        "keydown",
+        function(event) {
 
-        if (event.key === "Enter") {
-            searchOrder();
+            if (event.key === "Enter") {
+
+                searchOrder();
+
+            }
+
         }
-
-    });
+    );
 
 </script>
+
 
 </body>
 </html>
