@@ -3,375 +3,595 @@
 <html lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>WU鉴名表｜订单查询</title>
+<meta charset="UTF-8">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, "Microsoft YaHei", sans-serif;
-            background: #f5f5f5;
-            color: #1c1c1c;
-        }
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-        /* =========================
-           顶部品牌区域
-        ========================= */
+<title>WU鉴名表｜订单查询</title>
 
-        .brand-header {
-            position: relative;
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 32px 20px 28px;
-        }
-
-        .brand-name {
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            margin-bottom: 8px;
-        }
 
-        .brand-subtitle {
-            font-size: 12px;
-            letter-spacing: 3px;
-            color: #bbb;
-        }
+<style>
 
+* {
+    box-sizing: border-box;
+}
 
-        /* =========================
-           语言切换
-        ========================= */
+body {
+    margin: 0;
+    font-family: Arial, "Microsoft YaHei", sans-serif;
+    background: #f5f5f5;
+    color: #1c1c1c;
+}
 
-        .language-toggle {
-            position: absolute;
-            top: 18px;
-            right: 20px;
 
-            display: flex;
+/* =========================
+   Header
+========================= */
 
-            background: #2a2a2a;
-            border: 1px solid #444;
-            border-radius: 20px;
+.brand-header {
 
-            padding: 3px;
-        }
+    position: relative;
 
-        .lang-button {
-            border: none;
-            background: transparent;
-            color: #aaa;
+    background: #111;
 
-            padding: 7px 11px;
+    color: white;
 
-            border-radius: 17px;
+    text-align: center;
 
-            font-size: 12px;
+    padding: 32px 20px 28px;
 
-            cursor: pointer;
+}
 
-            transition: 0.2s;
-        }
 
-        .lang-button.active {
-            background: white;
-            color: #111;
-        }
+.brand-name {
 
+    font-size: 32px;
 
-        /* =========================
-           主页面
-        ========================= */
+    font-weight: 700;
 
-        .container {
-            max-width: 520px;
-            margin: 30px auto;
-            padding: 0 18px 40px;
-        }
+    letter-spacing: 4px;
 
-        .card {
-            background: white;
-            border-radius: 18px;
-            padding: 30px 24px;
+    margin-bottom: 8px;
 
-            box-shadow:
-                0 6px 30px rgba(0,0,0,0.08);
-        }
+}
 
-        h1 {
-            text-align: center;
-            margin: 0 0 10px;
-            font-size: 26px;
-        }
 
-        .subtitle {
-            text-align: center;
-            color: #777;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
+.brand-subtitle {
 
+    font-size: 12px;
 
-        /* =========================
-           Input
-        ========================= */
+    letter-spacing: 3px;
 
-        label {
-            display: block;
-            margin-top: 18px;
-            margin-bottom: 8px;
+    color: #bbb;
 
-            font-weight: 600;
-            font-size: 14px;
-        }
+}
 
-        input {
-            width: 100%;
 
-            padding: 14px 15px;
 
-            border: 1px solid #ddd;
-            border-radius: 10px;
+/* =========================
+   Language Toggle
+========================= */
 
-            font-size: 16px;
+.language-toggle {
 
-            outline: none;
-        }
+    position: absolute;
 
-        input:focus {
-            border-color: #111;
-        }
+    top: 18px;
 
-        .input-hint {
-            margin-top: 6px;
-            font-size: 12px;
-            color: #999;
-        }
+    right: 20px;
 
+    display: flex;
 
-        /* =========================
-           查询按钮
-        ========================= */
+    background: #2a2a2a;
 
-        .search-button {
-            width: 100%;
+    border: 1px solid #444;
 
-            margin-top: 25px;
+    border-radius: 20px;
 
-            padding: 15px;
+    padding: 3px;
 
-            border: none;
-            border-radius: 10px;
+}
 
-            background: #111;
-            color: white;
 
-            font-size: 16px;
-            font-weight: 600;
+.lang-button {
 
-            cursor: pointer;
-        }
+    border: none;
 
-        .search-button:hover {
-            opacity: 0.88;
-        }
+    background: transparent;
 
+    color: #aaa;
 
-        /* =========================
-           查询结果
-        ========================= */
+    padding: 7px 11px;
 
-        #result {
-            margin-top: 25px;
-        }
+    border-radius: 17px;
 
-        .result-box {
-            background: #f8faf8;
+    font-size: 12px;
 
-            border: 1px solid #e4eee6;
-            border-radius: 14px;
+    cursor: pointer;
 
-            padding: 20px;
-        }
+}
 
-        .success-title {
-            font-size: 17px;
-            font-weight: 700;
 
-            margin-bottom: 20px;
-        }
+.lang-button.active {
 
-        .row {
-            padding: 12px 0;
-            border-bottom: 1px solid #e8e8e8;
-        }
+    background: white;
 
-        .row:last-of-type {
-            border-bottom: none;
-        }
+    color: #111;
 
-        .label {
-            color: #777;
-            font-size: 13px;
+}
 
-            margin-bottom: 5px;
-        }
 
-        .value {
-            font-size: 17px;
-            font-weight: 600;
-        }
 
+/* =========================
+   Main
+========================= */
 
-        /* =========================
-           Status
-        ========================= */
+.container {
 
-        .status {
-            display: inline-block;
+    max-width: 560px;
 
-            padding: 7px 12px;
+    margin: 30px auto;
 
-            border-radius: 20px;
+    padding: 0 18px 40px;
 
-            background: #e9e9e9;
+}
 
-            font-size: 14px;
-        }
 
-        .status.shipped {
-            background: #dff5e5;
-            color: #147a35;
-        }
+.card {
 
-        .status.pending {
-            background: #fff1cf;
-            color: #875d00;
-        }
+    background: white;
 
+    border-radius: 18px;
 
-        /* =========================
-           Tracking
-        ========================= */
+    padding: 30px 24px;
 
-        .tracking-section {
-            margin-top: 20px;
+    box-shadow:
+        0 6px 30px rgba(0,0,0,0.08);
 
-            padding: 18px;
+}
 
-            background: #fffaf0;
 
-            border: 1px solid #f0e1bd;
-            border-radius: 12px;
-        }
+h1 {
 
-        .tracking-title {
-            font-size: 17px;
-            font-weight: 700;
+    text-align: center;
 
-            margin-bottom: 5px;
-        }
+    margin: 0 0 10px;
 
-        .tracking-instruction {
-            color: #777;
+    font-size: 26px;
 
-            font-size: 13px;
+}
 
-            margin-bottom: 14px;
-        }
 
-        .tracking-link {
-            display: block;
+.subtitle {
 
-            width: 100%;
+    text-align: center;
 
-            text-align: center;
+    color: #777;
 
-            padding: 14px 10px;
+    margin-bottom: 30px;
 
-            background: #111;
-            color: white;
+    font-size: 14px;
 
-            text-decoration: none;
+}
 
-            border-radius: 9px;
 
-            font-size: 14px;
-        }
 
-        .tracking-link:hover {
-            opacity: 0.85;
-        }
+/* =========================
+   Inputs
+========================= */
 
+label {
 
-        /* =========================
-           Error
-        ========================= */
+    display: block;
 
-        .error {
-            color: #b42318;
+    margin-top: 18px;
 
-            background: #fff1f0;
+    margin-bottom: 8px;
 
-            border-radius: 10px;
+    font-weight: 600;
 
-            text-align: center;
+    font-size: 14px;
 
-            padding: 15px;
-        }
+}
 
 
-        /* =========================
-           Footer
-        ========================= */
+input {
 
-        .footer {
-            text-align: center;
+    width: 100%;
 
-            color: #999;
+    padding: 14px 15px;
 
-            font-size: 12px;
+    border: 1px solid #ddd;
 
-            margin-top: 25px;
-        }
+    border-radius: 10px;
 
+    font-size: 16px;
 
-        /* =========================
-           手机版
-        ========================= */
+    outline: none;
 
-        @media (max-width: 600px) {
+}
 
-            .brand-name {
-                font-size: 27px;
-            }
 
-            .brand-header {
-                padding-top: 65px;
-            }
+input:focus {
 
-            .language-toggle {
-                top: 15px;
-                right: 15px;
-            }
+    border-color: #111;
 
-            .container {
-                margin-top: 20px;
-            }
+}
 
-            .card {
-                padding: 25px 18px;
-            }
-        }
 
-    </style>
+.input-hint {
+
+    margin-top: 6px;
+
+    font-size: 12px;
+
+    color: #999;
+
+}
+
+
+
+/* =========================
+   Button
+========================= */
+
+.search-button {
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #111;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.search-button:hover {
+
+    opacity: 0.88;
+
+}
+
+
+
+/* =========================
+   Results
+========================= */
+
+#result {
+
+    margin-top: 28px;
+
+}
+
+
+.result-summary {
+
+    padding: 14px 16px;
+
+    margin-bottom: 16px;
+
+    background: #edf8f0;
+
+    color: #147a35;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+}
+
+
+
+/* =========================
+   Individual Order
+========================= */
+
+.order-card {
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    margin-bottom: 18px;
+
+    background: #fafafa;
+
+}
+
+
+.order-card:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+.order-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.order-number {
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+}
+
+
+.order-date {
+
+    font-size: 12px;
+
+    color: #888;
+
+}
+
+
+.row {
+
+    padding: 11px 0;
+
+    border-bottom: 1px solid #e8e8e8;
+
+}
+
+
+.label {
+
+    color: #777;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.value {
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+}
+
+
+
+/* =========================
+   Status
+========================= */
+
+.status {
+
+    display: inline-block;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+}
+
+
+.status.shipped {
+
+    background: #dff5e5;
+
+    color: #147a35;
+
+}
+
+
+.status.pending {
+
+    background: #fff1cf;
+
+    color: #875d00;
+
+}
+
+
+
+/* =========================
+   Tracking
+========================= */
+
+.tracking-section {
+
+    margin-top: 16px;
+
+    padding: 16px;
+
+    background: #fffaf0;
+
+    border: 1px solid #f0e1bd;
+
+    border-radius: 11px;
+
+}
+
+
+.tracking-title {
+
+    font-weight: 700;
+
+    margin-bottom: 5px;
+
+}
+
+
+.tracking-instruction {
+
+    color: #777;
+
+    font-size: 12px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.tracking-link {
+
+    display: block;
+
+    text-align: center;
+
+    padding: 13px;
+
+    background: #111;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+}
+
+
+.tracking-link:hover {
+
+    opacity: 0.85;
+
+}
+
+
+
+/* =========================
+   Error
+========================= */
+
+.error {
+
+    color: #b42318;
+
+    background: #fff1f0;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    padding: 15px;
+
+}
+
+
+
+/* =========================
+   Footer
+========================= */
+
+.footer {
+
+    text-align: center;
+
+    color: #999;
+
+    font-size: 12px;
+
+    margin-top: 25px;
+
+}
+
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 600px) {
+
+    .brand-header {
+
+        padding-top: 65px;
+
+    }
+
+
+    .brand-name {
+
+        font-size: 27px;
+
+    }
+
+
+    .language-toggle {
+
+        top: 15px;
+
+        right: 15px;
+
+    }
+
+
+    .container {
+
+        margin-top: 20px;
+
+    }
+
+
+    .card {
+
+        padding: 25px 18px;
+
+    }
+
+
+    .order-header {
+
+        display: block;
+
+    }
+
+
+    .order-date {
+
+        margin-top: 5px;
+
+    }
+
+}
+
+</style>
+
 </head>
 
 
@@ -379,12 +599,11 @@
 
 
 <!-- =========================
-     品牌 Header
+     Header
 ========================= -->
 
 <div class="brand-header">
 
-    <!-- 语言切换 -->
 
     <div class="language-toggle">
 
@@ -395,6 +614,7 @@
         >
             中文
         </button>
+
 
         <button
             id="enButton"
@@ -407,100 +627,117 @@
     </div>
 
 
-    <!-- 店名永远不翻译 -->
+    <!-- 店名不翻译 -->
 
     <div class="brand-name">
         WU鉴名表
     </div>
 
+
     <div class="brand-subtitle">
         LUXURY WATCHES
     </div>
+
 
 </div>
 
 
 
 <!-- =========================
-     主内容
+     Main
 ========================= -->
 
 <div class="container">
 
-    <div class="card">
 
-        <h1 id="pageTitle">
-            订单查询
-        </h1>
+<div class="card">
 
 
-        <div
-            class="subtitle"
-            id="pageSubtitle"
-        >
-            请输入您的姓名和手机号码查询订单状态
-        </div>
+    <h1 id="pageTitle">
+        订单查询
+    </h1>
 
 
-        <!-- 姓名 -->
-
-        <label id="nameLabel">
-            姓名
-        </label>
-
-        <input
-            type="text"
-            id="name"
-            placeholder="请输入姓名"
-        >
-
-        <div
-            class="input-hint"
-            id="nameHint"
-        >
-            无视大小写
-        </div>
-
-
-        <!-- 手机号码 -->
-
-        <label id="phoneLabel">
-            手机号码
-        </label>
-
-        <input
-            type="tel"
-            id="phone"
-            placeholder="0123333333"
-        >
-
-        <div
-            class="input-hint"
-            id="phoneHint"
-        >
-            格式：0123333333
-        </div>
-
-
-        <!-- 查询按钮 -->
-
-        <button
-            id="searchButton"
-            class="search-button"
-            onclick="searchOrder()"
-        >
-            查询订单
-        </button>
-
-
-        <div id="result"></div>
-
+    <div
+        id="pageSubtitle"
+        class="subtitle"
+    >
+        请输入您的姓名和手机号码查询订单状态
     </div>
 
 
-    <div class="footer">
-        © 2026 WU鉴名表
+
+    <!-- Name -->
+
+    <label id="nameLabel">
+        姓名
+    </label>
+
+
+    <input
+        id="name"
+        type="text"
+        placeholder="请输入姓名"
+    >
+
+
+    <div
+        id="nameHint"
+        class="input-hint"
+    >
+        无视大小写
     </div>
+
+
+
+    <!-- Phone -->
+
+    <label id="phoneLabel">
+        手机号码
+    </label>
+
+
+    <input
+        id="phone"
+        type="tel"
+        placeholder="0123333333"
+    >
+
+
+    <div
+        id="phoneHint"
+        class="input-hint"
+    >
+        格式：0123333333
+    </div>
+
+
+
+    <!-- Search -->
+
+    <button
+        id="searchButton"
+        class="search-button"
+        onclick="searchOrder()"
+    >
+        查询订单
+    </button>
+
+
+
+    <div id="result"></div>
+
+
+</div>
+
+
+
+<div class="footer">
+
+    © 2026 WU鉴名表
+
+</div>
+
 
 </div>
 
@@ -508,16 +745,27 @@
 
 <script>
 
+
 /*
 =========================================
-语言
+Current Language
 =========================================
 */
 
 let currentLanguage = "zh";
 
+let lastOrders = null;
+
+
+
+/*
+=========================================
+Translations
+=========================================
+*/
 
 const translations = {
+
 
     zh: {
 
@@ -557,11 +805,17 @@ const translations = {
         systemError:
             "系统暂时无法查询，请稍后再试。",
 
-        found:
-            "✓ 找到您的订单",
+        foundOne:
+            "✓ 找到 1 个订单",
+
+        foundMultiple:
+            count => `✓ 找到 ${count} 个订单`,
 
         orderNo:
             "订单号码",
+
+        orderDate:
+            "下单日期",
 
         customerName:
             "客户姓名",
@@ -572,6 +826,12 @@ const translations = {
         trackingNo:
             "物流单号",
 
+        shipped:
+            "已发货",
+
+        pending:
+            "尚未发货",
+
         trackingTitle:
             "🚚 订单追踪",
 
@@ -579,15 +839,10 @@ const translations = {
             "点击链接以追踪订单状态",
 
         trackingButton:
-            "点击这里追踪订单",
-
-        shipped:
-            "已发货",
-
-        pending:
-            "尚未发货"
+            "点击这里追踪订单"
 
     },
+
 
 
     en: {
@@ -628,11 +883,17 @@ const translations = {
         systemError:
             "Unable to check your order at the moment. Please try again later.",
 
-        found:
-            "✓ Order Found",
+        foundOne:
+            "✓ 1 Order Found",
+
+        foundMultiple:
+            count => `✓ ${count} Orders Found`,
 
         orderNo:
             "Order Number",
+
+        orderDate:
+            "Order Date",
 
         customerName:
             "Customer Name",
@@ -643,6 +904,12 @@ const translations = {
         trackingNo:
             "Tracking Number",
 
+        shipped:
+            "Shipped",
+
+        pending:
+            "Pending for Shipment",
+
         trackingTitle:
             "🚚 Order Tracking",
 
@@ -650,13 +917,7 @@ const translations = {
             "Click the link below to track your order status",
 
         trackingButton:
-            "Track My Order",
-
-        shipped:
-            "Shipped",
-
-        pending:
-            "Pending for Shipment"
+            "Track My Order"
 
     }
 
@@ -666,15 +927,19 @@ const translations = {
 
 /*
 =========================================
-切换语言
+Change Language
 =========================================
 */
 
 function changeLanguage(language) {
 
-    currentLanguage = language;
 
-    const t = translations[language];
+    currentLanguage =
+        language;
+
+
+    const t =
+        translations[language];
 
 
     document.documentElement.lang =
@@ -683,41 +948,54 @@ function changeLanguage(language) {
             : "en";
 
 
-    document.getElementById("pageTitle")
-        .textContent = t.title;
+    document
+        .getElementById("pageTitle")
+        .textContent =
+        t.title;
 
 
-    document.getElementById("pageSubtitle")
-        .textContent = t.subtitle;
+    document
+        .getElementById("pageSubtitle")
+        .textContent =
+        t.subtitle;
 
 
-    document.getElementById("nameLabel")
-        .textContent = t.name;
+    document
+        .getElementById("nameLabel")
+        .textContent =
+        t.name;
 
 
-    document.getElementById("name")
-        .placeholder = t.namePlaceholder;
+    document
+        .getElementById("name")
+        .placeholder =
+        t.namePlaceholder;
 
 
-    document.getElementById("nameHint")
-        .textContent = t.nameHint;
+    document
+        .getElementById("nameHint")
+        .textContent =
+        t.nameHint;
 
 
-    document.getElementById("phoneLabel")
-        .textContent = t.phone;
+    document
+        .getElementById("phoneLabel")
+        .textContent =
+        t.phone;
 
 
-    document.getElementById("phoneHint")
-        .textContent = t.phoneHint;
+    document
+        .getElementById("phoneHint")
+        .textContent =
+        t.phoneHint;
 
 
-    document.getElementById("searchButton")
-        .textContent = t.search;
+    document
+        .getElementById("searchButton")
+        .textContent =
+        t.search;
 
 
-    /*
-    Toggle 样式
-    */
 
     document
         .getElementById("zhButton")
@@ -735,13 +1013,18 @@ function changeLanguage(language) {
         );
 
 
+
     /*
-    如果已经查询过订单，
-    切换语言时重新显示结果
+    已经查询后切换语言，
+    不需要重新查询
     */
 
-    if (lastOrder) {
-        displayOrder(lastOrder);
+    if (lastOrders) {
+
+        displayOrders(
+            lastOrders
+        );
+
     }
 
 }
@@ -750,21 +1033,12 @@ function changeLanguage(language) {
 
 /*
 =========================================
-保存最后查询结果
-=========================================
-*/
-
-let lastOrder = null;
-
-
-
-/*
-=========================================
-查询订单
+Search
 =========================================
 */
 
 async function searchOrder() {
+
 
     const t =
         translations[currentLanguage];
@@ -772,45 +1046,61 @@ async function searchOrder() {
 
     const name =
         document
-        .getElementById("name")
-        .value
-        .trim();
+            .getElementById("name")
+            .value
+            .trim();
 
 
     const phone =
         document
-        .getElementById("phone")
-        .value
-        .trim();
+            .getElementById("phone")
+            .value
+            .trim();
 
 
     const result =
-        document.getElementById("result");
+        document
+            .getElementById("result");
+
 
 
     if (!name || !phone) {
 
+
         result.innerHTML = `
+
             <div class="error">
+
                 ${t.enterDetails}
+
             </div>
+
         `;
 
+
         return;
+
     }
 
 
+
     result.innerHTML = `
+
         <div style="
             text-align:center;
             padding:15px;
         ">
+
             ${t.searching}
+
         </div>
+
     `;
 
 
+
     try {
+
 
         const response =
             await fetch(
@@ -826,49 +1116,68 @@ async function searchOrder() {
             );
 
 
+
         const data =
             await response.json();
 
 
+
         if (!data.success) {
 
-            lastOrder = null;
+
+            lastOrders = null;
+
 
             result.innerHTML = `
+
                 <div class="error">
+
                     ${
                         response.status === 404
                             ? t.notFound
                             : t.systemError
                     }
+
                 </div>
+
             `;
 
+
             return;
+
         }
 
 
-        lastOrder =
-            data.order;
+
+        lastOrders =
+            data.orders;
 
 
-        displayOrder(
-            data.order
+
+        displayOrders(
+            data.orders
         );
+
 
     }
 
     catch (error) {
 
+
         console.error(error);
 
-        lastOrder = null;
+
+        lastOrders = null;
 
 
         result.innerHTML = `
+
             <div class="error">
+
                 ${t.systemError}
+
             </div>
+
         `;
 
     }
@@ -879,183 +1188,320 @@ async function searchOrder() {
 
 /*
 =========================================
-显示订单
+Display Orders
 =========================================
 */
 
-function displayOrder(order) {
+function displayOrders(orders) {
+
 
     const t =
         translations[currentLanguage];
 
 
     const result =
-        document.getElementById("result");
+        document
+            .getElementById("result");
+
 
 
     /*
-    Status
+    Summary
     */
 
-    let statusClass = "";
+    const summary =
 
-    let statusText =
-        order.status;
+        orders.length === 1
 
+        ? t.foundOne
 
-    if (
-        order.status === "已发货" ||
-        order.status === "Shipped"
-    ) {
-
-        statusClass =
-            "shipped";
-
-        statusText =
-            t.shipped;
-
-    }
-
-
-    else if (
-        order.status === "尚未发货" ||
-        order.status === "Pending for Shipment"
-    ) {
-
-        statusClass =
-            "pending";
-
-        statusText =
-            t.pending;
-
-    }
+        : t.foundMultiple(
+            orders.length
+        );
 
 
 
     /*
-    Tracking No
+    Build all orders
     */
 
-    let trackingNumber = "";
+    const ordersHTML =
+        orders.map(order => {
 
 
-    if (order.trackingNo) {
+            /*
+            Status
+            */
 
-        trackingNumber = `
+            let statusClass = "";
 
-            <div class="row">
+            let statusText =
+                order.status;
 
-                <div class="label">
-                    ${t.trackingNo}
+
+
+            if (
+                order.status === "已发货" ||
+                order.status === "Shipped"
+            ) {
+
+                statusClass =
+                    "shipped";
+
+                statusText =
+                    t.shipped;
+
+            }
+
+
+            else if (
+                order.status === "尚未发货" ||
+                order.status === "Pending for Shipment"
+            ) {
+
+                statusClass =
+                    "pending";
+
+                statusText =
+                    t.pending;
+
+            }
+
+
+
+            /*
+            Tracking Number
+            */
+
+            let trackingNumber = "";
+
+
+            if (
+                order.status === "已发货" &&
+                order.trackingNo
+            ) {
+
+
+                trackingNumber = `
+
+                    <div class="row">
+
+                        <div class="label">
+                            ${t.trackingNo}
+                        </div>
+
+                        <div class="value">
+                            ${order.trackingNo}
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+
+
+            /*
+            Tracking Button
+
+            只有 Shipped 才显示
+            */
+
+            let trackingSection = "";
+
+
+            if (
+                order.status === "已发货"
+            ) {
+
+
+                trackingSection = `
+
+                    <div class="tracking-section">
+
+
+                        <div class="tracking-title">
+
+                            ${t.trackingTitle}
+
+                        </div>
+
+
+                        <div class="tracking-instruction">
+
+                            ${t.trackingInstruction}
+
+                        </div>
+
+
+                        <a
+                            class="tracking-link"
+
+                            href="http://120.79.172.107:555/"
+
+                            target="_blank"
+
+                            rel="noopener noreferrer"
+                        >
+
+                            ${t.trackingButton}
+
+                        </a>
+
+
+                    </div>
+
+                `;
+
+            }
+
+
+
+            /*
+            Order Date
+            */
+
+            let dateDisplay =
+                order.orderDate || "-";
+
+
+            if (order.orderDate) {
+
+
+                const date =
+                    new Date(
+                        order.orderDate
+                    );
+
+
+                if (!isNaN(date)) {
+
+
+                    dateDisplay =
+                        date.toLocaleDateString(
+
+                            currentLanguage === "zh"
+                                ? "zh-MY"
+                                : "en-MY"
+
+                        );
+
+                }
+
+            }
+
+
+
+            /*
+            Individual Card
+            */
+
+            return `
+
+                <div class="order-card">
+
+
+                    <div class="order-header">
+
+
+                        <div class="order-number">
+
+                            ${order.orderNo}
+
+                        </div>
+
+
+                        <div class="order-date">
+
+                            ${t.orderDate}:
+                            ${dateDisplay}
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="row">
+
+                        <div class="label">
+
+                            ${t.customerName}
+
+                        </div>
+
+
+                        <div class="value">
+
+                            ${order.name}
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="row">
+
+                        <div class="label">
+
+                            ${t.orderStatus}
+
+                        </div>
+
+
+                        <div class="value">
+
+                            <span
+                                class="
+                                    status
+                                    ${statusClass}
+                                "
+                            >
+
+                                ${statusText}
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    ${trackingNumber}
+
+
+                    ${trackingSection}
+
+
                 </div>
 
-                <div class="value">
-                    ${order.trackingNo}
-                </div>
+            `;
 
-            </div>
 
-        `;
-
-    }
+        }).join("");
 
 
 
     /*
-    显示
+    Show Everything
     */
 
     result.innerHTML = `
 
-        <div class="result-box">
 
+        <div class="result-summary">
 
-            <div class="success-title">
-                ${t.found}
-            </div>
-
-
-            <div class="row">
-
-                <div class="label">
-                    ${t.orderNo}
-                </div>
-
-                <div class="value">
-                    ${order.orderNo}
-                </div>
-
-            </div>
-
-
-            <div class="row">
-
-                <div class="label">
-                    ${t.customerName}
-                </div>
-
-                <div class="value">
-                    ${order.name}
-                </div>
-
-            </div>
-
-
-            <div class="row">
-
-                <div class="label">
-                    ${t.orderStatus}
-                </div>
-
-                <div class="value">
-
-                    <span class="
-                        status
-                        ${statusClass}
-                    ">
-                        ${statusText}
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            ${trackingNumber}
-
-
-            <div class="tracking-section">
-
-
-                <div class="tracking-title">
-                    ${t.trackingTitle}
-                </div>
-
-
-                <div class="tracking-instruction">
-                    ${t.trackingInstruction}
-                </div>
-
-
-                <a
-                    class="tracking-link"
-
-                    href="http://120.79.172.107:555/"
-
-                    target="_blank"
-
-                    rel="noopener noreferrer"
-                >
-
-                    ${t.trackingButton}
-
-                </a>
-
-
-            </div>
-
+            ${summary}
 
         </div>
+
+
+        ${ordersHTML}
+
 
     `;
 
@@ -1065,27 +1511,34 @@ function displayOrder(order) {
 
 /*
 =========================================
-Enter 查询
+Press Enter
 =========================================
 */
 
 document
     .getElementById("phone")
     .addEventListener(
+
         "keydown",
+
         function(event) {
 
-            if (event.key === "Enter") {
+            if (
+                event.key === "Enter"
+            ) {
 
                 searchOrder();
 
             }
 
         }
+
     );
+
 
 </script>
 
 
 </body>
+
 </html>
